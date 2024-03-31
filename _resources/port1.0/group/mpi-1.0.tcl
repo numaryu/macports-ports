@@ -98,6 +98,8 @@ proc mpi.setup_variants {variants} {
                 set d_name \$c_name
                 if {\$c_name eq {}} {
                     lassign \[mpi.get_default_mpi_compiler\] p_name d_name
+                } elseif {\[string match gcc1* \$c_name\]} {
+                    configure.cxx_stdlib libc++
                 } elseif {\[string match gcc* \$c_name\]} {
                     configure.cxx_stdlib macports-libstdc++
                 }
